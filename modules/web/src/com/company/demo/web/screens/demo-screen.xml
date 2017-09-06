@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://caption"
+        class="com.company.demo.web.screens.DemoScreen"
+        messagesPack="com.company.demo.web.screens">
+
+    <dsContext>
+        <collectionDatasource id="usersDs"
+                              class="com.haulmont.cuba.security.entity.User"
+                              view="user.browse">
+            <query>
+                select u from sec$User u
+            </query>
+        </collectionDatasource>
+    </dsContext>
+
+    <dialogMode height="600"
+                width="800"/>
+
+    <layout spacing="true"
+            expand="table"
+            margin="true">
+        <label stylename="h1"
+               value="Demo Screen"/>
+
+        <table id="table" width="100%">
+            <columns>
+                <column id="active"/>
+                <column id="login"/>
+                <column id="name"/>
+                <column id="position"/>
+            </columns>
+            <rows datasource="usersDs"/>
+        </table>
+    </layout>
+</window>
