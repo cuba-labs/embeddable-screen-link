@@ -1,5 +1,6 @@
 package com.company.demo.web;
 
+import com.company.demo.web.screens.DemoScreen;
 import com.haulmont.cuba.web.App;
 import com.haulmont.cuba.web.AppUI;
 import com.haulmont.cuba.web.sys.LinkHandler;
@@ -7,6 +8,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.WrappedSession;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class DemoLinkHandler extends LinkHandler {
@@ -29,6 +31,10 @@ public class DemoLinkHandler extends LinkHandler {
             try {
                 // open custom main window
                 app.navigateTo("demo-screen");
+
+                // init with request params
+                DemoScreen demoScreen = (DemoScreen) app.getTopLevelWindow();
+                demoScreen.handleLink(requestParams != null ? requestParams : Collections.emptyMap());
             } finally {
                 VaadinRequest request = VaadinService.getCurrentRequest();
                 WrappedSession wrappedSession = request.getWrappedSession();
